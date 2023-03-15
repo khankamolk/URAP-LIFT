@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title>URAP LIFT</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-cartesian.min.js"></script>
+    <style type="text/css">      
+      html, body, #container { 
+        width: 100%; height: 100%; margin: 0; padding: 0; 
+      } 
+    </style>
+  </head>
+  <body>  
+    <div id="container"></div>
+    <script>
+      anychart.onDocumentReady(function () {
+
+        // Creates linear function given x and y intercepts.
+        // Returns a function that calculates the y value with x input.
+        function makeFunc(x_Intercept, y_Intercept) {
+          function func(x) {
+              var m = - y_Intercept / x_Intercept;
+              return m * x + y_Intercept;
+          }
+          return func;
+        }
+
+        // Define x and y intercepts
+        var x_Intercept = 42;
+        var y_Intercept = 9;
+
+        // Create a function that generates data points
+        var generateDataPoints = makeFunc(x_Intercept, y_Intercept);
+
+        // Define the range of x values
+        var xStart = 0;
+        var xEnd = 42;
+        var xStep = 0.01;
+
+        // Enumerate through the range of x values, generating data points
+        var data = [];
+        for (var xCurr = xStart; xCurr <= xEnd; xCurr += xStep) {
+          var y = generateDataPoints(xCurr);
+          data.push({ x: xCurr, value: y });
+        }
+
+        // create a data set
+        var dataSet = anychart.data.set(data);
+
+        // map the dat
+        var mapping  = dataSet.mapAs({ x: "x", value: "value"});
+        
+        // create a line chart
+        var chart = anychart.line();
+
+        chart.title("Trial 1");
+        chart.xAxis().labels().format("${%value}");
+        chart.yAxis().labels().format("${%value}");
+        
+        // create a series and set the data
+        var series = chart.line(mapping);
+
+        // specify where to display the chart
+        chart.container("container");
+  
+        // draw the resulting chart
+        chart.draw();
+  
+      });
+    </script>
+  </body>
+</html>
