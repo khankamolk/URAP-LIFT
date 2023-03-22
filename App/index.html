@@ -1,33 +1,29 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>URAP LIFT</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js"></script>
-    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-cartesian.min.js"></script>
-    <style type="text/css">      
-      html, body, #container { 
-        width: 100%; height: 100%; margin: 0; padding: 0; 
-      } 
-    </style>
-  </head>
-  <body>  
-    <div id="container"></div>
+<head>
+    <meta charset="UTF-8">
+    <title>Linear Line Graph with D3.js</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" /> 
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+<body>
+    <svg width="600" height="400"></svg>
+    <!-- Line graph -->
     <script>
-      anychart.onDocumentReady(function () {
-
+        // Define the data to be plotted
         // Creates linear function given x and y intercepts.
         // Returns a function that calculates the y value with x input.
         function makeFunc(x_Intercept, y_Intercept) {
-          function func(x) {
-              var m = - y_Intercept / x_Intercept;
+            function func(x) {
+              var m = -y_Intercept / x_Intercept;
               return m * x + y_Intercept;
-          }
-          return func;
+            }
+            return func;
         }
 
         // Define x and y intercepts
         var x_Intercept = 42;
-        var y_Intercept = 9;
+        var y_Intercept = 36;
 
         // Create a function that generates data points
         var generateDataPoints = makeFunc(x_Intercept, y_Intercept);
@@ -35,38 +31,61 @@
         // Define the range of x values
         var xStart = 0;
         var xEnd = 42;
-        var xStep = 0.01;
+        var xStep = 1;
 
         // Enumerate through the range of x values, generating data points
         var data = [];
-        for (var xCurr = xStart; xCurr <= xEnd; xCurr += xStep) {
-          var y = generateDataPoints(xCurr);
-          data.push({ x: xCurr, value: y });
+        for (var x = xStart; x <= xEnd; x += xStep) {
+            var y = generateDataPoints(x);
+            data.push({ x: x, y: y });
         }
 
-        // create a data set
-        var dataSet = anychart.data.set(data);
+        // Create the SVG container for the chart
+        var svg = d3.select("svg");
 
-        // map the dat
-        var mapping  = dataSet.mapAs({ x: "x", value: "value"});
+        // Define the dimensions of the chart
+        var margin = { top: 20, right: 20, bottom: 30, left: 50 };
+        var width = +svg.attr("width") - margin.left - margin.right;
+        var height = +svg.attr("height") - margin.top - margin.bottom;
+
+        // Define the scales for the x and y axes
+        var xScale = d3.scaleLinear()
+            .domain([0, xEnd + 2])
+            .range([0, width]);
+
+        var yScale = d3.scaleLinear()
+            .domain([0, d3.max(data, function(d) { return d.y; }) + 2])
+            .range([height, 0]);
+
+        // Create the x and y axes
+        var xAxis = d3.axisBottom(xScale)
+            .tickFormat(function(d) { return "$" + d; }); // add dollar sign to tick labels
+        var yAxis = d3.axisLeft(yScale)
+            .tickFormat(function(d) { return "$" + d; }); 
+
+        svg.append("g")
+            .attr("transform", "translate(" + margin.left + "," + (height + margin.top) + ")")
+            .call(xAxis);
+
+        svg.append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+            .call(yAxis);
+
+        // Create a line generator function
+        var line = d3.line()
+            .x(function(d) { return xScale(d.x); })
+            .y(function(d) { return yScale(d.y); });
+
+        // Defining and drawing the line
+        svg.append("path")
+            .datum(data)
+            .attr("fill", "none")
+            .attr("stroke", "steelblue")
+            .attr("stroke-width", 2)
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+            .attr("d", line);c
+
         
-        // create a line chart
-        var chart = anychart.line();
-
-        chart.title("Trial 1");
-        chart.xAxis().labels().format("${%value}");
-        chart.yAxis().labels().format("${%value}");
-        
-        // create a series and set the data
-        var series = chart.line(mapping);
-
-        // specify where to display the chart
-        chart.container("container");
-  
-        // draw the resulting chart
-        chart.draw();
-  
-      });
-    </script>
-  </body>
+        </script>
+    </body>
 </html>
