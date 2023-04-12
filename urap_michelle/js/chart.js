@@ -20,13 +20,9 @@ anychart.onDocumentReady(function () {
     // define an empty data array
     var data = [];
 
-    // Define the range of x values
-    var xStart = 0;
-    var xEnd = 42;
-    var xStep = 0.01;
-
     // Enumerate through the range of x values, generating data points
-    for (var x = xStart; x <= xEnd; x += xStep) {
+    const xStep = 0.01;
+    for (var x = 0; x <= x_Intercept; x += xStep) {
         var y = generateDataPoints(x);
         data.push({ x: x.toFixed(2), y: y.toFixed(2)});
     }

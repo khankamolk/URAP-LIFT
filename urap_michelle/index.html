@@ -3,15 +3,54 @@
     <title>Line Chart JS</title>
     <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js"></script>
     <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-exports.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.anychart.com/releases/8.11.0/css/anychart-ui.min.css" />
-    <style type="text/css">      
-      html, body, #container { 
-        width: 600px; height: 600px; margin: 0; padding: 0; 
-      } 
-    </style>
+    <link rel="stylesheet" href="style.css"/>
   </head>
   <body>  
-    <div id="container"></div>
-    <script type="text/javascript" src="chart.js"></script>
+
+    <!--TODO: Make the rounds interactive -->
+    <div class="center">
+      <h1>Round 1 of 15</h1>
+    </div>
+    <div class="center">
+      <div id="container">
+        <script type="text/javascript" src="./js/chart.js"></script>
+      </div>
+    </div>
+
+    <div class="center">
+      <!--TODO: Implement this button onclick="implementFunction()-->
+      <button> 
+        <span id="toggle-popup" class="btn btn--primary">Confirm selection</span>
+      </button>
+    </div>
+
+    <!--TODO: Implement pop-up on click ? -->
+    <div id="confirmation-popup" class="popup">
+      <div class="popup-content">
+        <h3>You have made the following selection.</h3>
+        <p>Heads:</p>
+        <p>Tails:</p>
+        <div class="buttons-container">
+          <button id="close-popup" class="popup-btn btn--secondary">Cancel</button>
+          <button id="next-popup" class="popup-btn btn--primary">Next</button>
+        </div>
+      </div>
+    </div>
+    
+    <!--TODO: Move script to a separate js file -->
+    <script>
+      var toggle = document.getElementById("toggle-popup");
+      var myPopup = document.getElementById("confirmation-popup");
+      var closePopup = document.getElementById("close-popup");
+
+      toggle.onclick = function() {
+        myPopup.style.display = "block";
+      };
+
+      closePopup.onclick = function() {
+        myPopup.style.display = "none";
+      };
+    </script>
+
   </body>
 </html>
