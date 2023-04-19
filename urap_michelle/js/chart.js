@@ -1,25 +1,24 @@
-
-anychart.onDocumentReady(function () {
-    //define a function to plot 
-    function makeFunc(x_Intercept, y_Intercept) {
-        function func(x) {
-        var m = -y_Intercept / x_Intercept;
-        return m * x + y_Intercept;
-        }
-        return func; 
+// Returns f(x) function that generates y-points 
+function makeFunc(x_Intercept, y_Intercept) {
+    function func(x) {
+    var m = -y_Intercept / x_Intercept;
+    return m * x + y_Intercept;
     }
+    return func; 
+}
 
-
-    //Define x and y intercepts
-    var x_Intercept = 50;
-    var y_Intercept = 50;
+// Takes in the max tails and heads value and generates a line chart
+// using the values as the x and y-intercepts respectively.
+function drawChart(maxTailsValue, maxHeadsValue) {
+    // Define x and y intercepts
+    var x_Intercept = maxTailsValue;
+    var y_Intercept = maxHeadsValue;
 
     // Create a function that generates data points
     var generateDataPoints = makeFunc(x_Intercept, y_Intercept);
 
-    // define an empty data array
+    // Define an empty data array
     var data = [];
-
 
     // Enumerate through the range of x values, generating data points
     const xStep = 0.01;
@@ -28,14 +27,14 @@ anychart.onDocumentReady(function () {
         data.push({ x: x.toFixed(2), y: y.toFixed(2)});
     }
 
-    // create a data set
+    // Create a data set
     var dataSet = anychart.data.set(data);
     //console.log(dataSet.data());
 
-    // map the data for the generated line
+    // Map the data for the generated line
     var LineData = dataSet.mapAs({x: "x", value: "y"});
 
-    // create a line chart
+    // Create a line chart
     var chart = anychart.line();
 
     // create the series and name them
@@ -46,10 +45,10 @@ anychart.onDocumentReady(function () {
     tooltip.title(null);
     tooltip.format("Heads: ${%value} \nTails: ${%x}");
 
-    // add a title
+    // Add a title
     chart.title("Make your decision");
 
-    // add x and y label names
+    // Add x and y label names
     chart.xAxis().title('$Tails');
     chart.yAxis().title('$Heads');
 
@@ -62,23 +61,35 @@ anychart.onDocumentReady(function () {
     chart.yScale().minorTicks().interval(2);
    
 
-    // enable gridlines for both axes
+    // Enable gridlines for both axes
     chart.xGrid(true);
     chart.yGrid(true);
 
-    // crosshairs
+    // Crosshairs
     chart.crosshair().enabled(true);
     chart.crosshair().xLabel(false);
     chart.crosshair().yLabel(false);
     chart.crosshair().xStroke({ color: "#000", thickness: 1, dash: "5 5" });
     chart.crosshair().yStroke({ color: "#000", thickness: 1, dash: "5 5" });
 
-    
-
-    // // specify where to display the chart
+    // Specify where to display the chart
     chart.container("container");
 
-    // draw the resulting chart
+    // Draw the resulting chart
     chart.draw();
 
-});
+}
+
+// TODO: Use this to generate/reload graphs
+tailsHeads = [
+    [30, 40],
+    [40, 30]
+];
+
+anychart.onDocumentReady(drawChart(50, 50));
+
+// TODO: Cycle through tails-heads value in array
+// Not sure about this syntax....
+// for (i = 0; i < tailsHeads.size(); i++ ) {
+//     drawChart(tailsHeads[i])
+// }

@@ -24,7 +24,6 @@
       </button>
     </div>
 
-    <!--TODO: Implement pop-up on click ? -->
     <div id="confirmation-popup" class="popup">
       <div class="popup-content">
         <h3>You have made the following selection.</h3>
@@ -36,21 +35,8 @@
         </div>
       </div>
     </div>
+
+    <script type="text/javascript" src="./js/script.js"></script>
     
-    <!--TODO: Move script to a separate js file -->
-    <script>
-      var toggle = document.getElementById("toggle-popup");
-      var myPopup = document.getElementById("confirmation-popup");
-      var closePopup = document.getElementById("close-popup");
-
-      toggle.onclick = function() {
-        myPopup.style.display = "block";
-      };
-
-      closePopup.onclick = function() {
-        myPopup.style.display = "none";
-      };
-    </script>
-
   </body>
 </html>
