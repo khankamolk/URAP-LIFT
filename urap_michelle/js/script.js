@@ -2,27 +2,28 @@ var toggle = document.getElementById("toggle-popup");
 var myPopup = document.getElementById("confirmation-popup");
 var closePopup = document.getElementById("close-popup");
 var nextPopup = document.getElementById("next-popup");
+var chartContainer = document.getElementById("container");
+var currentRound = 1;
 
 toggle.onclick = function() {
-  myPopup.style.display = "block";
+  	myPopup.style.display = "block";
 };
 
 closePopup.onclick = function() {
-  myPopup.style.display = "none";
+  	myPopup.style.display = "none";
 };
 
 nextPopup.onclick = function() {
-    drawChart(30, 40); // I want this to redraw the chart...
+	document.getElementById('container').innerHTML = '';
+    drawChart(30, 40); 
 	myPopup.style.display = "none";
+
+  	// Update the round title
+  	currentRound++;
+  	updateRoundTitle();
 };
 
-function displayValue() {
-	// Get the HTML element with the id "value"
-	let valueElement = document.getElementById("value");
-
-	// Get the value from your script
-	let value = 42;
-
-	// Set the innerHTML of the element to the value
-	valueElement.innerHTML = value;
-}
+function updateRoundTitle() {
+	var roundTitle = document.getElementById('round-title');
+	roundTitle.textContent = 'Round ' + currentRound + ' of 25';
+  }
