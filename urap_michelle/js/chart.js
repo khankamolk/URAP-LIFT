@@ -60,6 +60,8 @@ function drawChart(maxTailsValue, maxHeadsValue, callback) {
     chart.xAxis().title('$Tails');
     chart.yAxis().title('$Heads');
 
+    chart.yScale().maximum(60);
+
     chart.xScale().ticks().interval(1000);
     chart.yScale().ticks().interval(10);
     chart.yScale().minorTicks().interval(2);
