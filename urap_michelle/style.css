@@ -1,135 +1,149 @@
-/*===============
-  styles
-===============*/
+/*====================
+  Global Styles
+====================*/
 
 * {
-    padding: 0;
-    margin: 0;
-    border: 0;
-    outline: 0;
-    background-color: inherit;
-    color: inherit;
-    font-family: inherit;
-    font-size: inherit;
-    box-shadow: none;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  background-color: inherit;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  box-shadow: none;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: "Poppins", sans-serif;
-    line-height: 1.5;
-    color: #212427;
-}
-
-.center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-h1 {
-    font-size: 20pt;
-}
-
-h2 {
-    font-size: 18pt;
-}
-
-h3 {
-    font-size: 14pt;
-    font-weight: 550;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
+  color: #212427;
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-/*===============
-  buttons
-===============*/
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*====================
+Typography
+====================*/
+
+h1 {
+  font-size: 20pt;
+}
+
+h2 {
+  font-size: 18pt;
+}
+
+h3 {
+  font-size: 14pt;
+  font-weight: 550;
+}
+
+/*====================
+Buttons
+====================*/
+
+.btn,
+.popup-btn {
+  display: block;
+  font-weight: 500;
+  width: fit-content;
+  /* transition: width 2s ease-in-out; */
+}
 
 .btn {
-    display: block;
-    padding: 8px 10px;
-    font-weight: 500;
-    width: fit-content;
-    transition: width 2s ease-in-out;
-  }
-  
-  .btn--primary {
-    color: white;
-    background-color: #215dcc;
-    border: 2px solid #215dcc;
-    border-radius: 7px;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-  }
-  
-  .btn--primary:focus,
-  .btn--primary:hover {
-    color: white;
-    border: 2px solid #2053b3;
-    background-color: #2053b3;
-  }
+  padding: 8px 10px;
+}
 
 .popup-btn {
-    display: block;
-    margin-right: 8px;
-    padding: 6px 8px;
-    font-weight: 500;
-    width: 100px;
-    transition: width 2s ease-in-out;
-  }
-  .btn--secondary {
-    border: 2px solid #dddddd;
-    border-radius: 7px;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-  }
-  
-  .btn--secondary:focus,
-  .btn--secondary:hover {
-    background-color: #dddddd;
-  }
+  margin-right: 8px;
+  padding: 6px 8px;
+  width: 100px;
+}
+
+.btn--primary,
+#toggle-popup {
+  background-color: gray;
+  color: white;
+  padding: 8px 10px;
+  cursor: not-allowed;
+  border-radius: 7px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+#toggle-popup.enabled {
+  background-color: #215dcc;
+  border: 2px solid #215dcc;
+  cursor: pointer;
+}
+
+.btn--primary:focus,
+.btn--primary:hover {
+  color: white;
+  border: 2px solid #2053b3;
+  background-color: #2053b3;
+}
+
+.btn--secondary {
+  border: 2px solid #dddddd;
+  border-radius: 7px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn--secondary:focus,
+.btn--secondary:hover {
+  background-color: #dddddd;
+}
 
 
-/*===============
-  layout
-===============*/
+/*====================
+Layout and Components
+====================*/
 
-#container { 
-    width: 500px; 
-    height: 500px; 
-    margin: 0; 
-    padding: 0; 
-  } 
+#container {
+  width: 500px;
+  height: 500px;
+  margin: 0;
+  padding: 0;
+}
 
 .popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-    display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: none;
 }
 
 .popup-content {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .buttons-container {
@@ -138,23 +152,3 @@ button {
   flex-direction: row;
   align-items: flex-end;
 }
-
-/* .btn--disabled {
-  background-color: gray;
-  cursor: not-allowed;
-}
-
-.btn--blue {
-  background-color: blue;
-  cursor: pointer;
-} */
-
-/* #toggle-popup {
-  background-color: gray;  
-  color: white;
-  cursor: not-allowed;     
-
-#toggle-popup.enabled {
-  background-color: blue;
-  cursor: pointer;       
-} */

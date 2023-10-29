@@ -50,7 +50,9 @@ var intercepts = [
 
 nextPopup.onclick = function() {
 	document.getElementById('container').innerHTML = '';
-
+	confirmSelectionBtn.disabled = true; // Disable the button for the next round
+	confirmSelectionBtn.classList.remove("enabled"); // Remove the blue style for the next round
+	
 	var xIntercept = intercepts[currentRound - 1].x;
 	var yIntercept = intercepts[currentRound - 1].y;
     drawChart(xIntercept, yIntercept); 

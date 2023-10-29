@@ -1,11 +1,8 @@
 var nextPopup = document.getElementById("next-popup");
 var clickedHead;
 var clickedTail;
-// var confirmSelectionBtn = document.getElementById("toggle-popup");
-// confirmSelectionBtn.disabled = true; // Disable the button initially
-
-// var confirmSelectionBtn = document.getElementById("toggle-popup");
-// confirmSelectionBtn.disabled = true; // Disable the button initially
+var confirmSelectionBtn = document.getElementById("toggle-popup");
+confirmSelectionBtn.disabled = true; // Disable the button initially
 
 // Storing selected data
 var log = [ 
@@ -86,8 +83,8 @@ function drawChart(maxTailsValue, maxHeadsValue) {
         clickedHead = selectedPoint.getStat('value');
         clickedTail = selectedPoint.getStat('x');
 
-        // confirmSelectionBtn.disabled = false; // Enable the button
-        // confirmSelectionBtn.classList.add("enabled"); // Apply the blue style
+        confirmSelectionBtn.disabled = false; // Enable the button
+        confirmSelectionBtn.classList.add("enabled"); // Apply the blue style
     });
 }
 
