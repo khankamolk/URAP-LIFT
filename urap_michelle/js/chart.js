@@ -1,4 +1,11 @@
 var nextPopup = document.getElementById("next-popup");
+var clickedHead;
+var clickedTail;
+// var confirmSelectionBtn = document.getElementById("toggle-popup");
+// confirmSelectionBtn.disabled = true; // Disable the button initially
+
+// var confirmSelectionBtn = document.getElementById("toggle-popup");
+// confirmSelectionBtn.disabled = true; // Disable the button initially
 
 // Storing selected data
 var log = [ 
@@ -14,18 +21,9 @@ function makeFunc(x_Intercept, y_Intercept) {
     return func; 
 }
 
-// Returns f(x) function that generates y-points 
-function makeFunc(x_Intercept, y_Intercept) {
-    function func(x) {
-    var m = -y_Intercept / x_Intercept;
-    return m * x + y_Intercept;
-    }
-    return func; 
-}
-
 // Takes in the max tails and heads value and generates a line chart
 // using the values as the x and y-intercepts respectively.
-function drawChart(maxTailsValue, maxHeadsValue, callback) {
+function drawChart(maxTailsValue, maxHeadsValue) {
     // Define x and y intercepts
     var x_Intercept = maxTailsValue;
     var y_Intercept = maxHeadsValue;
@@ -34,21 +32,23 @@ function drawChart(maxTailsValue, maxHeadsValue, callback) {
     var generateDataPoints = makeFunc(x_Intercept, y_Intercept);
     var data = [];
     const xStep = 0.01;
-    for (var x = 0; x <= x_Intercept; x += xStep) {
+    for (var x = 0; x <= 50; x += xStep) {
         var y = generateDataPoints(x);
+        if (y >= 0) {
         data.push({ x: x.toFixed(2), y: y.toFixed(2)});
+        }
     }
     var dataSet = anychart.data.set(data);
-    
+
     // Draw and populate line chart
     var LineData = dataSet.mapAs({x: "x", value: "y"});
     var chart = anychart.line();
+
+    // make x axis linear, so that the labels are aligned with their respective ticks
+    chart.xScale(anychart.scales.linear());
+
     var generatedLine = chart.line(LineData);
 
-    generatedLine.listen("click", function() {
-        var selectedPoint = e.point;
-        callback(selectedPoint);
-    });
 
     // display x and y values
     var tooltip = generatedLine.tooltip();
@@ -60,11 +60,12 @@ function drawChart(maxTailsValue, maxHeadsValue, callback) {
     chart.xAxis().title('$Tails');
     chart.yAxis().title('$Heads');
 
-    chart.yScale().maximum(60);
+    chart.xScale().maximum(50);
+    chart.yScale().maximum(50);
 
-    chart.xScale().ticks().interval(1000);
+    chart.xScale().ticks().interval(10);
     chart.yScale().ticks().interval(10);
-    chart.yScale().minorTicks().interval(2);
+    //chart.yScale().minorTicks().interval(2);
    
     chart.xGrid(true);
     chart.yGrid(true);
@@ -78,12 +79,16 @@ function drawChart(maxTailsValue, maxHeadsValue, callback) {
 
     chart.container("container");
     chart.draw();
-}
 
-// TODO: Log the latest selected point with its round number
-// if user selects confirm.
-function handleSelectedPoint(point) {
-    console.log("Selected Point - x: " + point.x + ", y: " + point.value);
+    // Get the head and tail values that have been selected
+    generatedLine.listen("pointClick", function(e) {
+        var selectedPoint = e.point;
+        clickedHead = selectedPoint.getStat('value');
+        clickedTail = selectedPoint.getStat('x');
+
+        // confirmSelectionBtn.disabled = false; // Enable the button
+        // confirmSelectionBtn.classList.add("enabled"); // Apply the blue style
+    });
 }
 
 // Log the selected point
@@ -93,4 +98,4 @@ function nextPopup() {
 }
 
 // Load in first chart
-anychart.onDocumentReady(drawChart(50, 50, handleSelectedPoint));
+anychart.onDocumentReady(drawChart(50, 50));

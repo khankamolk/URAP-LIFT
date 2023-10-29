@@ -7,7 +7,13 @@ var currentRound = 1;
 
 
 toggle.onclick = function() {
-  	myPopup.style.display = "block";
+    if(clickedHead && clickedTail) {
+        document.getElementById("selected-heads").textContent = "Heads: " + clickedHead;
+        document.getElementById("selected-tails").textContent = "Tails: " + clickedTail;
+        myPopup.style.display = "block";
+    } else {
+        alert("Please select a point on the chart first.");
+    }
 };
 
 closePopup.onclick = function() {
@@ -47,7 +53,7 @@ nextPopup.onclick = function() {
 
 	var xIntercept = intercepts[currentRound - 1].x;
 	var yIntercept = intercepts[currentRound - 1].y;
-    drawChart(xIntercept, yIntercept, handleSelectedPoint); 
+    drawChart(xIntercept, yIntercept); 
 	myPopup.style.display = "none";
 
   	// Update the round title

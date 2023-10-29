@@ -139,3 +139,22 @@ button {
   align-items: flex-end;
 }
 
+/* .btn--disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.btn--blue {
+  background-color: blue;
+  cursor: pointer;
+} */
+
+/* #toggle-popup {
+  background-color: gray;  
+  color: white;
+  cursor: not-allowed;     
+
+#toggle-popup.enabled {
+  background-color: blue;
+  cursor: pointer;       
+} */
