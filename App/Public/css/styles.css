@@ -3,120 +3,120 @@
 ====================*/
 
 * {
-    padding: 0;
-    margin: 0;
-    border: 0;
-    outline: 0;
-    background-color: inherit;
-    color: inherit;
-    font-family: inherit;
-    font-size: inherit;
-    box-shadow: none;
-    box-sizing: border-box;
-  }
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  background-color: inherit;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
+  color: #212427;
+}
+
+button {
+  cursor: pointer;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*====================
+Typography
+====================*/
+
+h1 {
+  font-size: 20pt;
+}
+
+h2 {
+  font-size: 18pt;
+}
+
+h3 {
+  font-size: 14pt;
+  font-weight: 550;
+}
+
+/*====================
+Buttons
+====================*/
+
+.btn,
+.popup-btn {
+  display: block;
+  font-weight: 500;
+  width: fit-content;
+  /* transition: width 2s ease-in-out; */
+}
+
+.btn {
+  padding: 8px 10px;
+}
+
+.popup-btn {
+  margin-right: 8px;
+  padding: 6px 8px;
+  width: 100px;
+}
+
+.btn--primary,
+#toggle-popup {
+  background-color: rgb(179, 178, 178);
+  color: white;
+  padding: 8px 10px;
+  cursor: not-allowed;
+  border-radius: 7px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+#toggle-popup.enabled {
+  background-color: #215dcc;
+  border: 2px solid #215dcc;
+  cursor: pointer;
+}
+
+.btn--primary:focus,
+.btn--primary:hover {
+  color: white;
+  border: #2053b3;
+  background-color: #2053b3;
+}
+
+.btn--secondary {
+  border: 2px solid #dddddd;
+  border-radius: 7px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn--secondary:focus,
+.btn--secondary:hover {
+  background-color: #dddddd;
+}
+
   
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    font-family: "Poppins", sans-serif;
-    line-height: 1.5;
-    color: #212427;
-  }
-  
-  button {
-    cursor: pointer;
-  }
-  
-  .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /*====================
-  Typography
-  ====================*/
-  
-  h1 {
-    font-size: 20pt;
-  }
-  
-  h2 {
-    font-size: 18pt;
-  }
-  
-  h3 {
-    font-size: 14pt;
-    font-weight: 550;
-  }
-  
-  /*====================
-  Buttons
-  ====================*/
-  
-  .btn,
-  .popup-btn {
-    display: block;
-    font-weight: 500;
-    width: fit-content;
-    /* transition: width 2s ease-in-out; */
-  }
-  
-  .btn {
-    padding: 8px 10px;
-  }
-  
-  .popup-btn {
-    margin-right: 8px;
-    padding: 6px 8px;
-    width: 100px;
-  }
-  
-  .btn--primary,
-  #toggle-popup {
-    background-color: gray;
-    color: white;
-    padding: 8px 10px;
-    cursor: not-allowed;
-    border-radius: 7px;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-  }
-  
-  #toggle-popup.enabled {
-    background-color: #215dcc;
-    border: 2px solid #215dcc;
-    cursor: pointer;
-  }
-  
-  .btn--primary:focus,
-  .btn--primary:hover {
-    color: white;
-    border: 2px solid #2053b3;
-    background-color: #2053b3;
-  }
-  
-  .btn--secondary {
-    border: 2px solid #dddddd;
-    border-radius: 7px;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-  }
-  
-  .btn--secondary:focus,
-  .btn--secondary:hover {
-    background-color: #dddddd;
-  }
-  
-  
-  /*====================
-  Layout and Components
-  ====================*/
-  
+/*====================
+Layout and Components
+====================*/
+
   #container {
     width: 500px;
     height: 500px;
@@ -153,3 +153,36 @@
     align-items: flex-end;
   }
   
+/*====================
+Segmented rogress Bar
+====================*/
+
+.progress-container {
+    max-width: 60em;
+    margin: 0 auto;
+}
+.progress-segment {
+  display: flex;
+  margin-bottom: 4em;
+}
+
+.item {
+  width: 100%;
+  background-color: lightgray;
+  margin-right: 2px;
+  height: 8px;
+
+  &:first-child {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+
+  &:last-child {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+
+  &.green-common {
+    background: #215dcc;;
+  }
+}

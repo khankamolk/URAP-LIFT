@@ -68,4 +68,6 @@ function updateRoundTitle() {
 	roundTitle.textContent = 'Round ' + currentRound + ' of 25';
 }
 
+// Update progress bar
+
 
