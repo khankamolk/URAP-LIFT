@@ -4,6 +4,7 @@ var closePopup = document.getElementById("close-popup");
 var nextPopup = document.getElementById("next-popup");
 var chartContainer = document.getElementById("container");
 var currentRound = 1;
+const TOTAL_ROUNDS = 25;
 
 
 toggle.onclick = function() {
@@ -60,14 +61,24 @@ nextPopup.onclick = function() {
 
   	// Update the round title
   	currentRound++;
-  	updateRoundTitle();
+  	updateRound();
 };
 
-function updateRoundTitle() {
+// Update round title and progress bar
+function updateRound() {
 	var roundTitle = document.getElementById('round-title');
+	//var progressBar = document.getElementById('progress-bar');
 	roundTitle.textContent = 'Round ' + currentRound + ' of 25';
+
+	progressBar.innerHTML = ""; // Clear div
+	var filledSegment = document.createElement('<div class="item green-common"></div>');
+	var emptySegment = document.createElement('<div class="item"></div>');
+
+	for (var i = 0; i < TOTAL_ROUNDS; i++) {
+		if (i < currentRound) {
+			progressBar.append(filledSegment);
+		} else {
+			progressBar.append(emptySegment);
+		}
+	}
 }
-
-// Update progress bar
-
-

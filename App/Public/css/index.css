@@ -1,25 +1,42 @@
+/*====================
+User Form Styles
+====================*/
+
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box
 }
 
+:focus {
+    outline: none
+}
 
-:focus {outline: none}
+textarea {
+    resize: none
+}
 
-textarea {resize: none}
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none
+}
 
-ul {padding: 0;margin: 0;list-style: none}img{max-width: 100%;vertical-align: middle}
+.wrapper {
+    max-width: 600px;
+    height: 100vh;
+    margin: auto;
+    display: flex;
+    align-items: center
+}
 
-.wrapper{max-width: 600px;height: 100vh;margin: auto;display: flex;align-items: center}
+.wrapper form {
+    width: 100%
+} 
 
-.wrapper 
-
-.image-holder{width: 51%}
-
-.wrapper form{width: 100%}.wizard >
-
-.steps .current-info, .wizard >.steps .number{display: none}
+.wizard > .steps .current-info, .wizard >.steps .number {
+    display: none
+}
 
 #wizard{min-height: 570px;background: #fff;margin-right: 60px;padding: 107px 75px 65px;margin-top: 20px;margin-bottom: 20px}
 .steps{margin-bottom: 30px}.steps ul{display: flex;position: relative}

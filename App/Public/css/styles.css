@@ -154,14 +154,14 @@ Layout and Components
   }
   
 /*====================
-Segmented rogress Bar
+Segmented Progress Bar
 ====================*/
 
 .progress-container {
-    max-width: 60em;
+    max-width: 40%;
     margin: 0 auto;
 }
-.progress-segment {
+#progress-bar {
   display: flex;
   margin-bottom: 4em;
 }

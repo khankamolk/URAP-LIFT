@@ -53,7 +53,6 @@ function drawChart(maxTailsValue, maxHeadsValue) {
     tooltip.format("Heads: ${%value} \nTails: ${%x}");
 
     // Setting axes
-    chart.title("Make your decision");
     chart.xAxis().title('$Tails');
     chart.yAxis().title('$Heads');
 
